@@ -1,77 +1,71 @@
-body{
-  background-image: url("/images/labanda2.png");
-  background-size: cover;
-  background-position: left center;
-  overflow: hidden;
-  background-repeat: no-repeat; 
-  margin-bottom: 10vh;
-  transition: background-image 0.5s ease-in-out;
-  object-fit: cover;
-  
-  
-
-}
-.heading{
-  font-size: 4rem;
-  color: rgb(227, 227, 222);
-  margin-left: 5vw;
-  margin-top: 50vh;
- 
-}
-.learnMoreButton{
-  background-color: rgb(47, 137, 67);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-left: 5vw;
-  &:hover {
-    background-color: rgb(186, 222, 195);
-  }
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
 .heroContainer {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  min-height: 600px;
   overflow: hidden;
   background-color: #000;
 }
 
-
 .heroImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   animation: kenBurns 20s infinite alternate ease-in-out;
 }
 
-
 .contentOverlay {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.35); 
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
   color: white;
   text-align: center;
+  padding: 2rem;
 }
 
+.contentOverlay h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+.learnMoreButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);
+}
+
+.learnMoreButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.5);
+}
 
 @keyframes kenBurns {
   0% {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
 }

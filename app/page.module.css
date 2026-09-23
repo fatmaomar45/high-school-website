@@ -30,7 +30,7 @@
   padding: 2rem;
 }
 
-.contentOverlay h1 {
+.heroTitle {
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
   line-height: 1.1;

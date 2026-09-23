@@ -1,14 +1,12 @@
+import HeroSection from "../components/HeroSection";
 import styles from "./Contacts.module.css";
 
 export default function Contacts() {
   return (
     <div className={styles.container}>
-      <section className={styles.heroSection}>
-        <h1 className={styles.heroTitle}>Contact Us</h1>
-        <p className={styles.heroText}>
-          We would love to hear from you. Reach out to Lamu Girls High School.
-        </p>
-      </section>
+      <HeroSection title="Contact Us">
+        <p>We would love to hear from you. Reach out to Lamu Girls High School.</p>
+      </HeroSection>
 
       <section className={styles.contentSection}>
         <div className={styles.card}>

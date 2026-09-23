@@ -1,6 +1,6 @@
-import styles from "./Aboutus.module.css";
+import HeroSection from "../components/HeroSection";
 import Image from "next/image";
-
+import styles from "./Aboutus.module.css";
 
 export default function AboutUs() {
   const leaders = [
@@ -20,35 +20,31 @@ export default function AboutUs() {
 
   return (
     <div className={styles.aboutContainer}>
-
-    
-      <section className={styles.heroSection}>
-        <h1 className={styles.heroTitle}>
-          About Lamu Girls High School
-        </h1>
-
-        <p className={styles.aboutText}>
+      <HeroSection
+        title="About Lamu Girls High School"
+        height="70vh"
+        titleSize="clamp(2.2rem, 5vw, 4rem)"
+        contentClass="aboutText"
+      >
+        <p>
           Lamu Girls High School is a beacon of academic excellence and
           holistic development for young women in Lamu. We are committed to
           providing a nurturing environment where every learner is empowered
           to discover her potential and pursue her dreams.
         </p>
-
-        <p className={styles.aboutText}>
+        <p>
           Through quality teaching, strong moral values, leadership
           development, and co-curricular activities, we prepare students to
           become responsible citizens capable of making meaningful
           contributions to society.
         </p>
-
-        <p className={styles.aboutText}>
+        <p>
           Our commitment extends beyond academic success. We strive to build
           confident, disciplined, innovative, and compassionate young women
           ready to embrace future opportunities and challenges.
         </p>
-      </section>
+      </HeroSection>
 
-     
       <section className={styles.leadershipSection}>
         <h2>Meet Our Leadership</h2>
         <p className={styles.sectionSubtitle}>
@@ -78,7 +74,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-    
       <section className={styles.valuesSection}>
         <div className={styles.valueCard}>
           <h3>Mission</h3>
@@ -88,7 +83,6 @@ export default function AboutUs() {
           </p>
         </div>
 
-
         <div className={styles.valueCard}>
           <h3>Vision</h3>
           <p>
@@ -97,13 +91,11 @@ export default function AboutUs() {
           </p>
         </div>
 
-
         <div className={styles.valueCard}>
           <h3>Motto</h3>
           <p>Strive to Excel.</p>
         </div>
       </section>
-
     </div>
   );
 }

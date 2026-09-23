@@ -1,14 +1,12 @@
+import HeroSection from "../components/HeroSection";
 import styles from "./Admission.module.css";
 
 export default function Admission() {
   return (
     <div className={styles.container}>
-      <section className={styles.heroSection}>
-        <h1 className={styles.heroTitle}>Admissions</h1>
-        <p className={styles.heroText}>
-          Join Lamu Girls High School and become part of a tradition of excellence.
-        </p>
-      </section>
+      <HeroSection title="Admissions">
+        <p>Join Lamu Girls High School and become part of a tradition of excellence.</p>
+      </HeroSection>
 
       <section className={styles.contentSection}>
         <div className={styles.card}>

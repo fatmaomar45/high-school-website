@@ -1,14 +1,12 @@
+import HeroSection from "../components/HeroSection";
 import styles from "./Events.module.css";
 
 export default function Events() {
   return (
     <div className={styles.container}>
-      <section className={styles.heroSection}>
-        <h1 className={styles.heroTitle}>Events</h1>
-          <p className={styles.heroText}>
-            Stay updated with the latest happenings at Lamu Girls High School.
-          </p>
-      </section>
+      <HeroSection title="Events">
+        <p>Stay updated with the latest happenings at Lamu Girls High School.</p>
+      </HeroSection>
 
       <section className={styles.contentSection}>
         <div className={styles.card}>

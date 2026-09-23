@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Nav from "./components/Nav";
 import "./globals.css";
-import Link from "next/link";
 import styles from "./layout.module.css";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,31 +21,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      
-      <body className="min-h-screen flex flex-col bg-surface text-text"> 
-        <nav className={styles.nav}>
-          <div className={styles.logo}><h1>LAMU GIRLS</h1></div>
-          <ul className={styles.ul}>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/admission">Admissions</Link></li>
-            <li><Link href="/events">Events</Link></li>
-            <li><Link href="/contacts">Contact Us</Link></li>
-          </ul>
-        </nav>
-
-      
-        <main className="flex-grow">
-          {children}
-        </main>
-
+      <body className="min-h-screen flex flex-col bg-surface text-text">
+        <Nav />
+        <main className={styles.main}>{children}</main>
         <footer className={styles.footer}>
           <p suppressHydrationWarning>
             &copy; {new Date().getFullYear()} Lamu Girls High School. All rights reserved.
           </p>
         </footer>
-
-
       </body>
     </html>
   );

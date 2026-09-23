@@ -2,55 +2,6 @@
   width: 100%;
 }
 
-.heroSection {
-  position: relative;
-  min-height: 70vh;
-  background-image: url("/images/lamu-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 6rem 2rem;
-  text-align: center;
-  overflow: hidden;
-}
-
-.heroSection::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.75) 0%,
-    rgba(15, 23, 42, 0.85) 100%
-  );
-}
-
-.heroSection > * {
-  position: relative;
-  z-index: 1;
-}
-
-.heroTitle {
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  color: white;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.aboutText {
-  max-width: 800px;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  margin-bottom: 1.25rem;
-  color: #e2e8f0;
-  font-weight: 400;
-}
-
 .leadershipSection {
   background: var(--color-surface-alt);
   padding: 6rem 2rem;

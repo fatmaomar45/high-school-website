@@ -1,12 +1,26 @@
 import styles from "./HeroSection.module.css";
 
-export default function HeroSection({ title, children, height = "55vh", titleSize = "clamp(2.2rem, 5vw, 3.5rem)", contentClass = "" }) {
+export default function HeroSection({
+  title,
+  subtitle,
+  badge,
+  height = "60vh",
+  children,
+  contentClass = "",
+}) {
   return (
     <section className={styles.heroSection} style={{ minHeight: height }}>
-      <h1 className={styles.heroTitle} style={{ fontSize: titleSize }}>
-        {title}
-      </h1>
-      <div className={contentClass ? `${styles.heroContent} ${styles[contentClass]}` : styles.heroContent}>{children}</div>
+      <div className={styles.heroOverlay} />
+      <div className={styles.heroContent}>
+        {badge && <span className={styles.heroBadge}>{badge}</span>}
+        <h1 className={styles.heroTitle}>{title}</h1>
+        {subtitle && <p className={styles.heroSubtitle}>{subtitle}</p>}
+        {children && (
+          <div className={contentClass ? `${styles.heroChildren} ${styles[contentClass]}` : styles.heroChildren}>
+            {children}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

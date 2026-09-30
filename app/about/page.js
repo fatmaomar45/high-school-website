@@ -1,4 +1,3 @@
-import HeroSection from "../components/HeroSection";
 import Image from "next/image";
 import styles from "./Aboutus.module.css";
 
@@ -8,92 +7,152 @@ export default function AboutUs() {
       name: "Madam Jamilah Mohamed",
       role: "School Principal",
       bio: "Provides academic leadership and guides the school in achieving excellence while nurturing students to become confident, disciplined, and responsible young women.",
-      image: "/images/team/principal.jpg",
     },
     {
       name: "Mr. Salim Bunu",
       role: "Board of Management Chair",
       bio: "Leads the Board of Management in supporting the school's development, governance, and long-term strategic growth.",
-      image: "/images/team/bom-chair.jpg",
     },
   ];
 
   return (
-    <div className={styles.aboutContainer}>
-      <HeroSection
-        title="About Lamu Girls High School"
-        height="70vh"
-        titleSize="clamp(2.2rem, 5vw, 4rem)"
-        contentClass="aboutText"
-      >
-        <p>
-          Lamu Girls High School is a beacon of academic excellence and
-          holistic development for young women in Lamu. We are committed to
-          providing a nurturing environment where every learner is empowered
-          to discover her potential and pursue her dreams.
-        </p>
-        <p>
-          Through quality teaching, strong moral values, leadership
-          development, and co-curricular activities, we prepare students to
-          become responsible citizens capable of making meaningful
-          contributions to society.
-        </p>
-        <p>
-          Our commitment extends beyond academic success. We strive to build
-          confident, disciplined, innovative, and compassionate young women
-          ready to embrace future opportunities and challenges.
-        </p>
-      </HeroSection>
-
-      <section className={styles.leadershipSection}>
-        <h2>Meet Our Leadership</h2>
-        <p className={styles.sectionSubtitle}>
-          Dedicated leaders committed to academic excellence and student
-          success.
-        </p>
-
-        <div className={styles.leadershipGrid}>
-          {leaders.map((leader, index) => (
-            <div key={index} className={styles.leaderCard}>
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={leader.image}
-                  alt={leader.name}
-                  width={180}
-                  height={180}
-                  className={styles.leaderImage}
-                />
-              </div>
-              <h3>{leader.name}</h3>
-              <span className={styles.role}>
-                {leader.role}
-              </span>
-              <p>{leader.bio}</p>
-            </div>
-          ))}
+    <div className={styles.about}>
+      {/* Page Header */}
+      <section className={styles.pageHeader}>
+        <div className={styles.container}>
+          <h1 className={styles.pageTitle}>About Lamu Girls High School</h1>
+          <p className={styles.pageSubtitle}>
+            A Cluster 1 National Boarding School empowering young women
+            through academic excellence and holistic development.
+          </p>
         </div>
       </section>
 
+      {/* History */}
+      <section className={styles.historySection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>A Legacy of Excellence</h2>
+          </div>
+          <div className={styles.historyGrid}>
+            <div className={styles.historyText}>
+              <p>
+                Lamu Girls High School is a Cluster 1 National Boarding School
+                located in Lamu West, Lamu County, Kenya. With an enrollment
+                of over 570 students, the school has established itself as an
+                academic giant in the region.
+              </p>
+              <p>
+                The school is committed to providing quality education that
+                nurtures academic excellence, leadership, integrity, and
+                lifelong learning. We prepare students to become responsible
+                citizens capable of making meaningful contributions to society.
+              </p>
+              <p>
+                Our commitment extends beyond academic success. We strive to
+                build confident, disciplined, innovative, and compassionate
+                young women ready to embrace future opportunities and
+                challenges.
+              </p>
+            </div>
+            <div className={styles.historyImage}>
+              <div className={styles.imageFrame}>
+                <Image
+                  src="/images/labanda2.png"
+                  alt="Lamu Girls Campus"
+                  width={500}
+                  height={400}
+                  className={styles.historyImg}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership */}
+      <section className={styles.leadershipSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Meet Our Leadership</h2>
+            <p className={styles.sectionSubtitle}>
+              Dedicated leaders committed to academic excellence and student
+              success.
+            </p>
+          </div>
+          <div className={styles.leadershipGrid}>
+            {leaders.map((leader, index) => (
+              <div key={index} className={styles.leaderCard}>
+                <h3>{leader.name}</h3>
+                <span className={styles.role}>{leader.role}</span>
+                <p>{leader.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
       <section className={styles.valuesSection}>
-        <div className={styles.valueCard}>
-          <h3>Mission</h3>
-          <p>
-            To provide quality education that nurtures academic excellence,
-            leadership, integrity, and lifelong learning.
-          </p>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Mission, Vision & Motto</h2>
+          </div>
+          <div className={styles.valuesGrid}>
+            <div className={styles.valueCard}>
+              <div className={styles.valueIcon}>📖</div>
+              <h3>Mission</h3>
+              <p>
+                To provide quality education that nurtures academic excellence,
+                leadership, integrity, and lifelong learning.
+              </p>
+            </div>
+            <div className={styles.valueCard}>
+              <div className={styles.valueIcon}>🌴</div>
+              <h3>Vision</h3>
+              <p>
+                To be a centre of excellence in educating and empowering young
+                women for a dynamic world.
+              </p>
+            </div>
+            <div className={styles.valueCard}>
+              <div className={styles.valueIcon}>⛵</div>
+              <h3>Motto</h3>
+              <p>Strive to Excel.</p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className={styles.valueCard}>
-          <h3>Vision</h3>
-          <p>
-            To be a centre of excellence in educating and empowering young
-            women for a dynamic world.
-          </p>
-        </div>
-
-        <div className={styles.valueCard}>
-          <h3>Motto</h3>
-          <p>Strive to Excel.</p>
+      {/* Crest */}
+      <section className={styles.crestSection}>
+        <div className={styles.container}>
+          <div className={styles.crestGrid}>
+            <div className={styles.crestImage}>
+              <Image
+                src="/images/images.jpeg"
+                alt="Lamu Girls School Crest"
+                width={300}
+                height={300}
+                className={styles.crestImg}
+              />
+            </div>
+            <div className={styles.crestText}>
+              <h2 className={styles.sectionTitle}>The School Crest</h2>
+              <p>
+                Our crest symbolizes the school&apos;s commitment to academic
+                excellence and the rich cultural heritage of Lamu. The open book
+                represents knowledge, the palm tree represents the coastal
+                environment, and the dhow represents the maritime heritage of
+                the region.
+              </p>
+              <p>
+                The motto &quot;Strive to Excel&quot; is at the heart of
+                everything we do, encouraging every learner to reach her highest
+                potential.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

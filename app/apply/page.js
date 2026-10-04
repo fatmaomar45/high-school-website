@@ -89,7 +89,7 @@ export default function Apply() {
           <div className={styles.heroOverlay} />
         </div>
         <div className={styles.heroContent}>
-          <span className={styles.heroBadge}>Apply Now</span>
+         
           <h1 className={styles.heroTitle}>Online Application</h1>
           <p className={styles.heroSubtitle}>
             Begin your journey to excellence. Fill out the form below to apply

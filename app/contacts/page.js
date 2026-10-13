@@ -10,20 +10,40 @@ export default function Contacts() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState({ type: null, message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setStatus({ type: null, message: "" });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:fatmaomarmoh@gmail.com?subject=${encodeURIComponent(
-      formData.subject
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
+    setIsSubmitting(true);
+    setStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: "success", message: data.message || "Message sent successfully!" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus({ type: "error", message: data.error || "Failed to send message. Please try again." });
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: "Network error. Please check your connection and try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -83,6 +103,11 @@ export default function Contacts() {
           <div className={styles.formWrapper}>
             <h3>Send Me a Message</h3>
             <form onSubmit={handleSubmit} className={styles.contactForm}>
+              {status.message && (
+                <div className={`${styles.statusMessage} ${styles[status.type]}`}>
+                  {status.message}
+                </div>
+              )}
               <div className={styles.formGroup}>
                 <label htmlFor="name">Full Name</label>
                 <input
@@ -93,6 +118,7 @@ export default function Contacts() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -105,6 +131,7 @@ export default function Contacts() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -117,6 +144,7 @@ export default function Contacts() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -129,10 +157,11 @@ export default function Contacts() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
-              <button type="submit" className={styles.btnPrimary}>
-                Send Message
+              <button type="submit" className={styles.btnPrimary} disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>

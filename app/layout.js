@@ -40,10 +40,7 @@ export default function RootLayout({ children }) {
                     <p className={styles.footerMotto}>Strive to Excel</p>
                   </div>
                 </div>
-                <p className={styles.footerDesc}>
-                  A personal project showcasing a school website built
-                  with Next.js, React, and Tailwind CSS.
-                </p>
+                
               </div>
               <div className={styles.footerCol}>
                 <h4 className={styles.footerHeading}>Quick Links</h4>
@@ -56,7 +53,7 @@ export default function RootLayout({ children }) {
                 </ul>
               </div>
               <div className={styles.footerCol}>
-                <h4 className={styles.footerHeading}>Contact</h4>
+
                 <ul className={styles.footerContact}>
                   
                   

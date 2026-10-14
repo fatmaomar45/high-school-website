@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Nav.module.css";
 
 const links = [
@@ -26,15 +27,27 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setMenuOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
         <nav className={styles.nav}>
           <div className={styles.logo} onClick={() => router.push("/")}>
-            <img src="/images/images.jpeg" alt="Lamu Girls Crest" className={styles.logoCrest} />
+            <Image src="/images/images.jpeg" alt="Lamu Girls Crest" width={44} height={44} className={styles.logoCrest} />
             <div className={styles.logoText}>
               <span className={styles.logoName}>Lamu Girls</span>
               <span className={styles.logoMotto}>Strive to Excel</span>
@@ -45,6 +58,7 @@ export default function Nav() {
             className={styles.hamburger}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-controls="primary-navigation"
             aria-expanded={menuOpen}
           >
             <span className={menuOpen ? styles.barOpen : styles.bar}></span>
@@ -52,7 +66,7 @@ export default function Nav() {
             <span className={menuOpen ? styles.barOpen : styles.bar}></span>
           </button>
 
-          <ul className={`${styles.ul} ${menuOpen ? styles.ulOpen : ""}`}>
+          <ul id="primary-navigation" className={`${styles.ul} ${menuOpen ? styles.ulOpen : ""}`}>
             {links.map((link) => (
               <li key={link.href}>
                 <Link

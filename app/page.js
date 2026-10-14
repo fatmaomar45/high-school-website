@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Home",
+  description: "Welcome to Lamu Girls High School — empowering young women through academic excellence, leadership, and holistic development.",
+};
+
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -15,6 +20,7 @@ export default function Home() {
             className={styles.heroImage}
             priority
             quality={90}
+            sizes="100vw"
           />
           <div className={styles.heroOverlay} />
         </div>
@@ -79,6 +85,7 @@ export default function Home() {
                   width={500}
                   height={400}
                   className={styles.aboutImg}
+                  sizes="(max-width: 768px) 100vw, 500px"
                 />
               </div>
               <div className={styles.imageAccent} />
@@ -175,6 +182,7 @@ export default function Home() {
                   alt="Students gathering"
                   width={400}
                   height={300}
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
               </div>
               <h3>Community</h3>
@@ -195,7 +203,7 @@ export default function Home() {
             <div className={styles.lifeCard}>
               <div className={styles.lifeImage}>
                 <Image
-                  src="/images/images.jpeg"
+                  src="/images/lg.jpeg"
                   alt="School crest"
                   width={400}
                   height={300}

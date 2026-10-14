@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "About Us",
+  description: "Learn about the history, leadership, mission, vision, and school crest of Lamu Girls High School.",
+};
+
 import Image from "next/image";
 import styles from "./Aboutus.module.css";
 

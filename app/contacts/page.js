@@ -9,6 +9,7 @@ export default function Contacts() {
     email: "",
     subject: "",
     message: "",
+    website: "",
   });
   const [status, setStatus] = useState({ type: null, message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +36,7 @@ export default function Contacts() {
 
       if (response.ok) {
         setStatus({ type: "success", message: data.message || "Message sent successfully!" });
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", subject: "", message: "", website: "" });
       } else {
         setStatus({ type: "error", message: data.error || "Failed to send message. Please try again." });
       }
@@ -158,6 +159,18 @@ export default function Contacts() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
+                />
+              </div>
+              <div style={{ display: "none" }} aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
               </div>
               <button type="submit" className={styles.btnPrimary} disabled={isSubmitting}>

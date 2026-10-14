@@ -1,44 +1,26 @@
+'use client';
+
+import { useState } from "react";
 import Image from "next/image";
 import styles from "./Events.module.css";
+import {
+  upcomingEvents,
+  activities,
+  eventCategories,
+} from "./eventsData";
 
 export default function Events() {
-  const upcomingEvents = [
-    {
-      date: "Oct 15",
-      title: "Open Day & Campus Tour",
-      desc: "Prospective students and parents are invited to tour our campus, meet faculty, and learn about our programs.",
-      category: "Admissions",
-    },
-    {
-      date: "Nov 08",
-      title: "KCSE Mock Examinations",
-      desc: "Form 4 students sit their final mock examinations in preparation for the national KCSE.",
-      category: "Academics",
-    },
-    {
-      date: "Dec 12",
-      title: "Prize Giving Day",
-      desc: "Annual celebration of academic and co-curricular achievements. Parents and guardians are welcome.",
-      category: "School",
-    },
-    {
-      date: "Jan 20",
-      title: "New Term Orientation",
-      desc: "Welcome orientation for new students joining Form 1. Introduction to school life and expectations.",
-      category: "Admissions",
-    },
-  ];
+  const [activeCategory, setActiveCategory] = useState("All");
 
-  const activities = [
-    { name: "Debate Club", icon: "🎤" },
-    { name: "Drama & Music", icon: "🎭" },
-    { name: "Netball", icon: "🏐" },
-    { name: "Volleyball", icon: "🏐" },
-    { name: "Football", icon: "⚽" },
-    { name: "Swimming", icon: "🏊" },
-    { name: "Scouts", icon: "🏕️" },
-    { name: "Environmental Club", icon: "🌱" },
-  ];
+  const filteredEvents =
+    activeCategory === "All"
+      ? upcomingEvents
+      : upcomingEvents.filter((event) => event.category === activeCategory);
+
+  const filteredActivities =
+    activeCategory === "All"
+      ? activities
+      : activities.filter((activity) => activity.category === activeCategory);
 
   return (
     <div className={styles.events}>
@@ -53,6 +35,26 @@ export default function Events() {
         </div>
       </section>
 
+      {/* Filter Controls */}
+      <section className={styles.filterSection}>
+        <div className={styles.container}>
+          <div className={styles.filterBar} role="tablist" aria-label="Filter events and activities">
+            {eventCategories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === category}
+                className={`${styles.filterButton} ${activeCategory === category ? styles.filterButtonActive : ""}`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Upcoming Events */}
       <section className={styles.upcomingSection}>
         <div className={styles.container}>
@@ -63,19 +65,24 @@ export default function Events() {
             </p>
           </div>
           <div className={styles.eventsGrid}>
-            {upcomingEvents.map((event, i) => (
-              <div key={i} className={styles.eventCard}>
-                <div className={styles.eventDate}>
-                  <span className={styles.eventMonth}>{event.date.split(" ")[0]}</span>
-                  <span className={styles.eventDay}>{event.date.split(" ")[1]}</span>
+            {filteredEvents.length === 0 ? (
+              <p className={styles.emptyState}>No events in this category yet.</p>
+            ) : (
+              filteredEvents.map((event, i) => (
+                <div key={i} className={styles.eventCard}>
+                  <div className={styles.eventDate}>
+                    <span className={styles.eventYear}>{event.year}</span>
+                    <span className={styles.eventMonth}>{event.date.split(" ")[0]}</span>
+                    <span className={styles.eventDay}>{event.date.split(" ")[1]}</span>
+                  </div>
+                  <div className={styles.eventContent}>
+                    <span className={styles.eventCategory}>{event.category}</span>
+                    <h3>{event.title}</h3>
+                    <p>{event.desc}</p>
+                  </div>
                 </div>
-                <div className={styles.eventContent}>
-                  <span className={styles.eventCategory}>{event.category}</span>
-                  <h3>{event.title}</h3>
-                  <p>{event.desc}</p>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -90,12 +97,16 @@ export default function Events() {
             </p>
           </div>
           <div className={styles.activitiesGrid}>
-            {activities.map((activity, i) => (
-              <div key={i} className={styles.activityCard}>
-                <span className={styles.activityIcon}>{activity.icon}</span>
-                <span className={styles.activityName}>{activity.name}</span>
-              </div>
-            ))}
+            {filteredActivities.length === 0 ? (
+              <p className={styles.emptyState}>No activities in this category yet.</p>
+            ) : (
+              filteredActivities.map((activity, i) => (
+                <div key={i} className={styles.activityCard}>
+                  <span className={styles.activityIcon} aria-hidden="true">{activity.icon}</span>
+                  <span className={styles.activityName}>{activity.name}</span>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -110,19 +121,21 @@ export default function Events() {
             <div className={styles.galleryItem}>
               <Image
                 src="/images/labanda2.png"
-                alt="School campus"
+                alt="School campus buildings and grounds"
                 width={400}
                 height={300}
                 className={styles.galleryImg}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className={styles.galleryItem}>
               <Image
                 src="/images/students.png"
-                alt="Students"
+                alt="Students taking part in campus life"
                 width={400}
                 height={300}
                 className={styles.galleryImg}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>

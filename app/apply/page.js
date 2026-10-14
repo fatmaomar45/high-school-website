@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./Apply.module.css";
 
@@ -178,9 +179,9 @@ export default function Apply() {
             <p>
               You will receive further communication from the school. For inquiries, contact us at 0721693606 or lamugirls71@gmail.com.
             </p>
-            <a href="/" className={styles.btnPrimary}>
+            <Link href="/" className={styles.btnPrimary}>
               Return to Home
-            </a>
+            </Link>
           </div>
         </section>
       </div>
@@ -199,6 +200,7 @@ export default function Apply() {
             className={styles.heroImage}
             priority
             quality={85}
+            sizes="100vw"
           />
           <div className={styles.heroOverlay} />
         </div>
@@ -223,6 +225,14 @@ export default function Apply() {
           </div>
 
           <form onSubmit={handleSubmit} className={styles.applicationForm} encType="multipart/form-data">
+            <div style={{ display: "none" }} aria-hidden="true">
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             {status.message && (
               <div className={`${styles.statusMessage} ${styles[status.type]}`}>
                 {status.message}

@@ -1,4 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import Image from "next/image";
 import Nav from "./components/Nav";
 import "./globals.css";
 import styles from "./layout.module.css";
@@ -14,9 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Lamu Girls High School | Personal Project",
+  title: {
+    default: "Lamu Girls High School",
+    template: "%s | Lamu Girls High School",
+  },
   description:
-    "A modern school website project for Lamu Girls High School, built with Next.js and React.",
+    "Lamu Girls High School is a Cluster 1 National Boarding School in Lamu West, Lamu County, Kenya, offering academic excellence and holistic development for young women.",
+  metadataBase: new URL("https://lamu-girls.example.com"),
 };
 
 export default function RootLayout({ children }) {
@@ -30,9 +36,11 @@ export default function RootLayout({ children }) {
             <div className={styles.footerGrid}>
               <div className={styles.footerCol}>
                 <div className={styles.footerBrand}>
-                  <img
+                  <Image
                     src="/images/images.jpeg"
                     alt="Lamu Girls Crest"
+                    width={48}
+                    height={48}
                     className={styles.footerCrest}
                   />
                   <div>
@@ -45,11 +53,12 @@ export default function RootLayout({ children }) {
               <div className={styles.footerCol}>
                 <h4 className={styles.footerHeading}>Quick Links</h4>
                 <ul className={styles.footerLinks}>
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/about">About Us</a></li>
-                  <li><a href="/admission">Admissions</a></li>
-                  <li><a href="/events">Events</a></li>
-                  <li><a href="/contacts">Contact</a></li>
+                  <li><Link href="/">Home</Link></li>
+                  <li><Link href="/about">About Us</Link></li>
+                  <li><Link href="/admission">Admissions</Link></li>
+                  <li><Link href="/events">Events</Link></li>
+                  <li><Link href="/contacts">Contact</Link></li>
+                  <li><Link href="/privacy">Privacy Policy</Link></li>
                 </ul>
               </div>
               <div className={styles.footerCol}>

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Admissions",
+  description: "Admission requirements, application process, important dates, and online application for Lamu Girls High School.",
+};
+
 import Link from "next/link";
 import styles from "./Admission.module.css";
 
@@ -140,6 +145,68 @@ export default function Admission() {
               <span className={styles.dateDay}>01</span>
               <span className={styles.dateLabel}>Admission Letters</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Admission Details */}
+      <section className={styles.requirementsSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Admission Details</h2>
+            <p className={styles.sectionSubtitle}>
+              Key information for prospective students and parents
+            </p>
+          </div>
+          <div className={styles.requirementsGrid}>
+            <div className={styles.requirementsCard}>
+              <h3>Intake and Capacity</h3>
+              <ul className={styles.requirementsList}>
+                <li><span className={styles.checkIcon}>✓</span> Form 1 intake opens every January</li>
+                <li><span className={styles.checkIcon}>✓</span> Transfer applications considered for Forms 2 to 4</li>
+                <li><span className={styles.checkIcon}>✓</span> Boarding capacity for over 570 students</li>
+                <li><span className={styles.checkIcon}>✓</span> Limited scholarships and bursaries available</li>
+              </ul>
+            </div>
+            <div className={styles.requirementsCard}>
+              <h3>Fees and Support</h3>
+              <p>
+                Fee structures, uniform lists, and book requirements are issued
+                with admission letters. Parents may contact the school office for
+                payment plans, scholarship inquiries, or transfer guidance.
+              </p>
+              <p>
+                For admission support, email the school or visit the office during
+                working hours. Applications are reviewed in the order received.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* School Documents */}
+      <section className={styles.processSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>School Documents</h2>
+            <p className={styles.sectionSubtitle}>
+              Downloadable resources for parents, students, and applicants
+            </p>
+          </div>
+          <div className={styles.processGrid}>
+            {[
+              { title: "School Prospectus", desc: "Overview of programs, admissions, and campus life." },
+              { title: "Fee Structure", desc: "Current fee schedule and payment guidance." },
+              { title: "Admission Form", desc: "Printable application form for offline submission." },
+              { title: "Term Calendar", desc: "Term dates, examinations, and key events." },
+            ].map((doc, i) => (
+              <div key={i} className={styles.processCard}>
+                <span className={styles.stepNumber}>{String(i + 1).padStart(2, "0")}</span>
+                <h3>{doc.title}</h3>
+                <p>{doc.desc}</p>
+                <a href="#" className={styles.btnOutline}>Download</a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
